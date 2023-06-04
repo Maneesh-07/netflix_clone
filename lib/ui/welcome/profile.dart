@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix/Core/constants.dart';
 import 'package:netflix/ui/main_page/widgets/main_page.dart';
 
 class ProfileSelecting extends StatelessWidget {
@@ -9,7 +10,10 @@ class ProfileSelecting extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: const PreferredSize(
-          preferredSize: Size.fromHeight(60.0), child: AppBarWidget(title: '',)),
+          preferredSize: Size.fromHeight(60.0),
+          child: AppBarWidget(
+            title: '',
+          )),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -31,7 +35,7 @@ class ProfileSelecting extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>  ScreenMainPage(),
+                        builder: (context) => ScreenMainPage(),
                       ),
                     );
                   },
@@ -74,10 +78,10 @@ class ProfileSelecting extends StatelessWidget {
               ],
             ),
           ),
-          Row(
+          const Row(
             mainAxisAlignment:
                 MainAxisAlignment.end, // Aligns the text to the right
-            children: const [
+            children: [
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(right: 35),

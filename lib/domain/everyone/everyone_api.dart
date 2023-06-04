@@ -1,13 +1,13 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
-import 'package:netflix/domain/toprated/toprated_tvshow.dart';
+import 'package:netflix/domain/everyone/everyone_model.dart';
 
-class Apihandler2 {
-  static Future<List<ResultsTvshows>> fetchTvShowsMovies() async {
+class ApihandlerForEveryone {
+  static Future<List<ResultsEveryone>> fetchEveryOneMovies() async {
     const apiKey = 'ce67f1a6cb358f3908b618579e03c76b';
-    const url = 'https://api.themoviedb.org/3/tv/top_rated?api_key=$apiKey';
+    const url =
+        'https://api.themoviedb.org/3/movie/now_playing?api_key=$apiKey';
 
     final response = await http.get(Uri.parse(url));
     List tempList = [];
@@ -17,12 +17,9 @@ class Apihandler2 {
       print(jsonData);
 
       for (var v in jsonDecode(response.body)['results']) {
-        log('damn $v');
-
         tempList.add(v);
       }
     }
-    log('damn having problem $tempList');
-    return ResultsTvshows.trendingFromSnapshot(tempList);
+    return ResultsEveryone.everyoneFromSnapshot(tempList);
   }
 }

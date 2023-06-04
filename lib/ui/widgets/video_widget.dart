@@ -2,21 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:netflix/Core/Color/colors.dart';
 import 'package:netflix/ui/new_and_hot/screen_new_and_hot.dart';
 
-
-class VideoWidget extends StatelessWidget {
+class VideoWidget extends StatefulWidget {
+  final String posterPath;
   const VideoWidget({
     super.key,
+    required this.posterPath,
   });
 
+  @override
+  State<VideoWidget> createState() => _VideoWidgetState();
+}
+
+class _VideoWidgetState extends State<VideoWidget> {
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         SizedBox(
           width: double.infinity,
-          height: 200,
+          height: 400,
           child: Image.network(
-            newAndHotTemplateImage,
+            'https://image.tmdb.org/t/p/w500' + widget.posterPath,
             fit: BoxFit.cover,
           ),
         ),

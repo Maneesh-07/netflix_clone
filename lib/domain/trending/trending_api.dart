@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:netflix/domain/trending/trending_models.dart';
@@ -18,7 +19,9 @@ class Apihandler1 {
       for (var v in jsonDecode(response.body)['results']) {
         tempList.add(v);
       }
+      log(tempList.toString());
     }
+
     return Resultstrending.trendingFromSnapshot(tempList);
   }
 }

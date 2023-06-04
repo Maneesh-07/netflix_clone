@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/Core/constants.dart';
+import 'package:netflix/domain/search/search_model.dart';
 import 'package:netflix/ui/search/widgets/title.dart';
 
-const imageUrl =
-    'https://www.themoviedb.org/t/p/w220_and_h330_face/ekZobS8isE6mA53RAiGDG93hBxL.jpg';
+class SearchResult extends StatefulWidget {
+  List searchResultFrom = [];
+  SearchResult({super.key, required this.searchResultFrom});
 
-class SearchResult extends StatelessWidget {
-  const SearchResult({super.key});
+  @override
+  State<SearchResult> createState() => _SearchResultState();
+}
 
+class _SearchResultState extends State<SearchResult> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,27 +20,42 @@ class SearchResult extends StatelessWidget {
         const TitleSearchPage(title: 'Movies & TV'),
         kHeight,
         Expanded(
-            child: GridView.count(
-                mainAxisSpacing: 8,
-                crossAxisSpacing: 5,
-                childAspectRatio: 1 / 1.4,
-                crossAxisCount: 3,
-                children: List.generate(20, (index) => const MovieCard())))
+          child: GridView.count(
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 5,
+            childAspectRatio: 1 / 1.4,
+            crossAxisCount: 3,
+            children: List.generate(
+              widget.searchResultFrom.length,
+              (index) => MovieCard(
+                posterPath:
+                    widget.searchResultFrom[index].posterPath.toString(),
+              ),
+            ),
+          ),
+        )
       ],
     );
   }
 }
 
-class MovieCard extends StatelessWidget {
-  const MovieCard({super.key});
+class MovieCard extends StatefulWidget {
+  final String posterPath;
+  const MovieCard({super.key, required this.posterPath});
 
+  @override
+  State<MovieCard> createState() => _MovieCardState();
+}
+
+class _MovieCardState extends State<MovieCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          image: const DecorationImage(
+          image: DecorationImage(
             fit: BoxFit.cover,
-            image: NetworkImage(imageUrl),
+            image: NetworkImage(
+                'https://image.tmdb.org/t/p/w500' + widget.posterPath),
           ),
           borderRadius: BorderRadius.circular(8)),
     );

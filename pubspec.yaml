@@ -43,6 +43,7 @@ dependencies:
   
   tmdb_api: ^2.1.5
   http: ^1.0.0
+  intl: ^0.18.1
   
   
   

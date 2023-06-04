@@ -1,9 +1,8 @@
-import 'dart:convert';
-import 'dart:ffi';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:netflix/Infrastructure/api_keys.dart';
+import 'package:netflix/Core/Color/colors.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/domain/models/popular/popular.dart';
 import 'package:netflix/domain/models/popular/popularmodel.dart';
@@ -14,6 +13,7 @@ import 'package:netflix/domain/trending/trending_models.dart';
 import 'package:netflix/ui/home/widgets/background_card_widget.dart';
 import 'package:netflix/ui/home/widgets/number_title_card.dart';
 import 'package:netflix/ui/home/widgets/toprated_list.dart';
+import 'package:netflix/ui/search/screen_search.dart';
 import 'package:netflix/ui/widgets/main_title_card.dart';
 
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
@@ -35,22 +35,26 @@ class _ScreenHomeState extends State<ScreenHome> {
   @override
   void initState() {
     // TODO: implement initState
+
+    super.initState();
     getpopular();
     gettrending();
     gettvshows();
-    super.initState();
   }
 
   Future<void> getpopular() async {
     popularList = await Apihandler.fetchPopularMovies();
+    setState(() {});
   }
 
   Future<void> gettrending() async {
     trendingList = await Apihandler1.fetchTrendingMovies();
+    setState(() {});
   }
 
   Future<void> gettvshows() async {
     tvShowList = await Apihandler2.fetchTvShowsMovies();
+    setState(() {});
   }
 
   @override
@@ -73,7 +77,21 @@ class _ScreenHomeState extends State<ScreenHome> {
           child: Stack(
             children: [
               ListView.builder(
+                itemCount: 1,
                 itemBuilder: (context, index) {
+                  if (trendingList.isEmpty) {
+                    return const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                            child: SizedBox(
+                                height: 40,
+                                width: 40,
+                                child: CircularProgressIndicator())),
+                      ],
+                    ); // Return an empty container or a placeholder widget
+                  }
+
                   return Column(
                     children: [
                       BackgroundCard(
@@ -85,33 +103,16 @@ class _ScreenHomeState extends State<ScreenHome> {
                         trendingList: trendingList,
                       ),
                       kHeight,
-                      // MainTitleCard(
-                      //   title: "Trending Now",
-                      //   movielist: tvShows,
-                      // ),
                       NumberTitleCard(
                         tvShowList: tvShowList,
                       ),
                       TopRatedScreen(
                         popularList: popularList,
                       ),
-                      // kHeight,
-
-                      // kHeight,
-                      // const MainTitleCard(
-                      //   title: "Tense Dramas",
-                      // ),
-                      // kHeight,
-                      // const MainTitleCard(
-                      //   title: "South Indian Cinema",
-                      // ),
                       kHeight,
                     ],
                   );
                 },
-                // children: [
-
-                // ],
               ),
               scrollNotifier.value == true
                   ? AnimatedContainer(
@@ -132,16 +133,28 @@ class _ScreenHomeState extends State<ScreenHome> {
                                 ),
                               ),
                               const Spacer(),
-                              const Icon(
-                                Icons.cast,
-                                color: Colors.white,
-                                size: 30,
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => ScreenSearch(),
+                                  ));
+                                },
+                                child: const Icon(
+                                  Icons.search,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
                               ),
                               kWidth,
                               Container(
-                                color: Colors.blue,
                                 height: 30,
                                 width: 30,
+                                decoration: const BoxDecoration(
+                                    color: kColorBlack,
+                                    image: DecorationImage(
+                                        image: AssetImage(
+                                            'assets/images/Avatar-Profile-Vector-Transparent.png'),
+                                        fit: BoxFit.cover)),
                               ),
                               kWidth,
                             ],

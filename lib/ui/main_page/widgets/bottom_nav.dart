@@ -37,18 +37,18 @@ class BottomNavigationScreen extends StatelessWidget {
                 ),
                 label: 'New & Hot',
               ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.emoji_emotions_outlined,
-                ),
-                label: 'Fast Laugh',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.search,
-                ),
-                label: 'Search',
-              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(
+              //     Icons.emoji_emotions_outlined,
+              //   ),
+              //   label: 'Fast Laugh',
+              // ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(
+              //     Icons.search,
+              //   ),
+              //   label: 'Search',
+              // ),
               BottomNavigationBarItem(
                 icon: Icon(
                   Icons.download,
