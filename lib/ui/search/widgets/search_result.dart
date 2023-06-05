@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/Core/constants.dart';
-import 'package:netflix/domain/search/search_model.dart';
 import 'package:netflix/ui/search/widgets/title.dart';
 
+// ignore: must_be_immutable
 class SearchResult extends StatefulWidget {
   List searchResultFrom = [];
   SearchResult({super.key, required this.searchResultFrom});

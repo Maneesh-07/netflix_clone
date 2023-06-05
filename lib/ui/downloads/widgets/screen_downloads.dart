@@ -6,6 +6,8 @@ import 'package:netflix/Core/constants.dart';
 import 'package:netflix/domain/toprated/toprated_api.dart';
 import 'package:netflix/domain/toprated/toprated_tvshow.dart';
 
+ List<ResultsTvshows> tvShowList = [];
+
 class ScreenDownloads extends StatefulWidget {
   const ScreenDownloads({
     Key? key,
@@ -16,7 +18,7 @@ class ScreenDownloads extends StatefulWidget {
 }
 
 class _ScreenDownloadsState extends State<ScreenDownloads> {
-  List<ResultsTvshows> tvShowList = [];
+ 
 
   @override
   void initState() {

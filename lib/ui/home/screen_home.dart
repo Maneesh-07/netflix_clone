@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:netflix/Core/Color/colors.dart';
@@ -15,6 +14,12 @@ import 'package:netflix/ui/home/widgets/toprated_list.dart';
 import 'package:netflix/ui/search/screen_search.dart';
 import 'package:netflix/ui/widgets/main_title_card.dart';
 
+List<Results> popularList = [];
+
+List<Resultstrending> trendingList = [];
+
+List<ResultsTvshows> tvShowList = [];
+
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
 
 class ScreenHome extends StatefulWidget {
@@ -25,12 +30,6 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
-  List<Results> popularList = [];
-
-  List<Resultstrending> trendingList = [];
-
-  List<ResultsTvshows> tvShowList = [];
-
   @override
   void initState() {
     // TODO: implement initState

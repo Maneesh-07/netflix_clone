@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:netflix/Infrastructure/api_keys.dart';
 import 'package:netflix/domain/hot_coming_soon/coming_soon.dart';
 
 class ApihandlerForComingSoon {
   static Future<List<Resultscoming>> fetchComingSoonMovies() async {
-    const apiKey = 'ce67f1a6cb358f3908b618579e03c76b';
     const url = 'https://api.themoviedb.org/3/movie/upcoming?api_key=$apiKey';
 
     final response = await http.get(Uri.parse(url));

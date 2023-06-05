@@ -22,7 +22,7 @@ class Apihandler2 {
         tempList.add(v);
       }
     }
-    log('damn having problem $tempList');
+    //log('damn having problem $tempList');
     return ResultsTvshows.trendingFromSnapshot(tempList);
   }
 }

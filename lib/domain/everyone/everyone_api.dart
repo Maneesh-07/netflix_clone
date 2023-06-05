@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:netflix/Infrastructure/api_keys.dart';
 import 'package:netflix/domain/everyone/everyone_model.dart';
 
 class ApihandlerForEveryone {
   static Future<List<ResultsEveryone>> fetchEveryOneMovies() async {
-    const apiKey = 'ce67f1a6cb358f3908b618579e03c76b';
     const url =
         'https://api.themoviedb.org/3/movie/now_playing?api_key=$apiKey';
 
