@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:netflix/Core/constants.dart';
+
 import 'package:netflix/ui/main_page/widgets/main_page.dart';
 
 class ProfileSelecting extends StatelessWidget {

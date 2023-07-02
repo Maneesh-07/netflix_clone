@@ -32,7 +32,7 @@ class ScreenHome extends StatefulWidget {
 class _ScreenHomeState extends State<ScreenHome> {
   @override
   void initState() {
-    // TODO: implement initState
+    
 
     super.initState();
     getpopular();
